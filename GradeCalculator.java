@@ -1,36 +1,38 @@
 import java.util.Scanner;
 public class GradeCalculator {
     public static void main(String[] args) {
-        // Get the marks obtained in each subject from the user
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the marks obtained in each subject (out of 100):");
-        int[] marks = new int[5];
-        for (int i = 0; i < marks.length; i++) {
-            marks[i] = scanner.nextInt();
+
+        System.out.print("Enter the number of subjects: ");
+        int numSubjects = scanner.nextInt();
+
+        double totalMarks = 0;
+
+        for (int i = 1; i <= numSubjects; i++) {
+            System.out.print("Enter marks obtained in subject " + i + " (out of 100): ");
+            double marks = scanner.nextDouble();
+            totalMarks += marks;
         }
-        // Calculate the total marks
-        int totalMarks = 0;
-        for (int mark : marks) {
-            totalMarks += mark;
-        }
-        // Calculate the average percentage
-        double averagePercentage = (double) totalMarks / marks.length;
-        // Assign grades based on the average percentage
-        String grade;
+
+        double averagePercentage = (totalMarks / (numSubjects * 100)) * 100;
+
+        char grade;
         if (averagePercentage >= 90) {
-            grade = "A";
+            grade = 'A';
         } else if (averagePercentage >= 80) {
-            grade = "B";
+            grade = 'B';
         } else if (averagePercentage >= 70) {
-            grade = "C";
+            grade = 'C';
         } else if (averagePercentage >= 60) {
-            grade = "D";
+            grade = 'D';
         } else {
-            grade = "F";
+            grade = 'F';
         }
-        // Display the results
+
         System.out.println("Total Marks: " + totalMarks);
-        System.out.println("Average Percentage: " + averagePercentage);
+        System.out.println("Average Percentage: " + averagePercentage + "%");
         System.out.println("Grade: " + grade);
+
+        scanner.close();
     }
 }
